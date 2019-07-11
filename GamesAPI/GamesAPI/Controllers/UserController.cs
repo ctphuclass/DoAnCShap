@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GamesAPI.Models;
+using GamesAPI.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +11,32 @@ namespace GamesAPI.Controllers
 {
     public class UserController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        private UserRepository userRepository;
+        public UserController()
         {
-            return new string[] { "value1", "value2" };
+            userRepository = new UserRepository();
+        }
+        // GET api/user
+        public UserModel[] Get()
+        {
+            return userRepository.GetAllUser();
+            
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        public UserModel Get(int id)
         {
-            return "value";
+            return userRepository.GetUser(id);
+            
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        // POST api/user
+        public HttpResponseMessage Post(UserModel user)
         {
-        }
+            this.userRepository.SaveUser(user);
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+            var response = Request.CreateResponse<UserModel>(System.Net.HttpStatusCode.Created, user);
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+            return response;
         }
     }
 }
