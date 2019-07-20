@@ -32,9 +32,9 @@ namespace GamesAPI.Controllers
         // POST api/user
         public HttpResponseMessage Post(UserModel user)
         {
-            this.userRepository.SaveUser(user);
+            ResultMessageModel result = this.userRepository.SaveUser(user);
 
-            var response = Request.CreateResponse<UserModel>(System.Net.HttpStatusCode.Created, user);
+            var response = Request.CreateResponse<ResultMessageModel>(System.Net.HttpStatusCode.OK, result);
 
             return response;
         }

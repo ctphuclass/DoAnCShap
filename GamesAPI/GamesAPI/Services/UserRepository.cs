@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using GamesAPI.DataAccess;
 using GamesAPI.Models;
 
 namespace GamesAPI.Services
@@ -30,28 +31,45 @@ namespace GamesAPI.Services
                 }
             }
         }
-        public bool SaveUser(UserModel contact)
+
+        public ResultMessageModel SaveUser(UserModel contact)
         {
             var ctx = HttpContext.Current;
-
+            ResultMessageModel result = new ResultMessageModel();
             if (ctx != null)
             {
                 try
                 {
-                    var currentData = ((UserModel[])ctx.Cache[CacheKey]).ToList();
-                    currentData.Add(contact);
-                    ctx.Cache[CacheKey] = currentData.ToArray();
+                    UserDataAccess userDataAccess = new UserDataAccess();
+                    result = userDataAccess.CreateUser(contact);
+                    if(result.Result > 0)
+                    {
+                        // Email Message Code
 
-                    return true;
+                        var currentData = ((UserModel[])ctx.Cache[CacheKey]).ToList();
+                        currentData.Add(contact);
+                        ctx.Cache[CacheKey] = currentData.ToArray();
+
+                        return result;
+                    }
+                    else
+                    {
+                        return result;
+                    }
+                    
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.ToString());
-                    return false;
+                    result.Result = -1;
+                    result.ResultMessage = ex.ToString();
+                    return result;
                 }
             }
 
-            return false;
+            result.Result = -1;
+            result.ResultMessage = "DONT_HAVE_CONTEXT";
+            return result;
         }
         public UserModel[] GetAllUser()
         {
@@ -88,10 +106,10 @@ namespace GamesAPI.Services
                 };
                
         }
-        //public string GetConnectionString()
-        //{
-        //    string sConnectionString = WebConfigurationManager.AppSettings["ConnectionString"];
-        //    return sConnectionString;
-        //}
+        public string GetConnectionString()
+        {
+            string sConnectionString = WebConfigurationManager.AppSettings["ConnectionString"];
+            return sConnectionString;
+        }
     }
 }
