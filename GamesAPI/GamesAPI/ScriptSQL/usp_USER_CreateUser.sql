@@ -44,14 +44,14 @@ BEGIN
 	-- Neu ton tai it nhat mot user co username = @pUserName thi bao loi
 	IF EXISTS(SELECT UserID FROM dbo.[User] WHERE UserName = @pUserName)
 	BEGIN
-		SELECT @pResult = -1, @pResultID = NULL, @pResultMessage = 'USERNAME_EXISTS'
+		SELECT @pResult = -1, @pResultID = 0, @pResultMessage = 'USERNAME_EXISTS'
 		RETURN
 	END
 
 	-- Neu ton tai it nhat mot user co Email = @pEmail thi bao loi
 	IF EXISTS(SELECT UserID FROM dbo.[User] WHERE Email = @pEmail)
 	BEGIN
-		SELECT @pResult = -1, @pResultID = NULL, @pResultMessage = 'EMAIL_EXISTS'
+		SELECT @pResult = -1, @pResultID = 0, @pResultMessage = 'EMAIL_EXISTS'
 		RETURN
 	END
 

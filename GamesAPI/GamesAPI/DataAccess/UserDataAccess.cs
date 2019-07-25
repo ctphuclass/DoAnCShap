@@ -46,7 +46,8 @@ namespace GamesAPI.DataAccess
                 con.Open();
                 cmd.ExecuteNonQuery();
                 result.Result = (int)cmd.Parameters["@pResult"].Value;
-                result.ResultID = (int)cmd.Parameters["@pResultID"].Value;
+                if(result.Result > 0)
+                    result.ResultID = (int)cmd.Parameters["@pResultID"].Value;
                 result.ResultMessage = cmd.Parameters["@pResultMessage"].Value.ToString();
                 cmd.Dispose();
             }
@@ -63,6 +64,42 @@ namespace GamesAPI.DataAccess
                 }
             }
             return result;
+        }
+
+        public int GetUserIDByUserName(string psUserName)
+        {
+            int iUserID;
+            try
+            {
+                /* Because We will put all out values from our (UserRegistration.aspx)
+				To in Bussiness object and then Pass it to Bussiness logic and then to
+				DataAcess
+				this way the flow carry on*/
+                SqlCommand cmd = new SqlCommand("usp_USER_GetUserIDByUserName", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@pUserName", SqlDbType.VarChar, 50);
+                cmd.Parameters["@pUserName"].Value = psUserName;
+                cmd.Parameters.Add("@pUserID", SqlDbType.Int);
+                
+                cmd.Parameters["@pResultID"].Direction = ParameterDirection.Output;
+                
+                con.Open();
+                cmd.ExecuteNonQuery();
+                iUserID = (int)cmd.Parameters["@pResult"].Value;
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                iUserID = 0;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+            return iUserID;
         }
     }
 }
