@@ -1,4 +1,5 @@
 ﻿using GamesAPI.Models;
+using GamesAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace GamesAPI.Controllers
 {
     public class UserActionController : ApiController
     {
+        private UserActionRepository userActionRepository = new UserActionRepository();
         //// GET: api/UserAction
         //public IEnumerable<string> Get()
         //{
@@ -23,9 +25,9 @@ namespace GamesAPI.Controllers
         //}
 
         // POST: api/UserAction
-        public HttpResponseMessage Post()
+        public HttpResponseMessage Post(UserActionModel userActionModel)
         {
-            ResultMessageModel result = new ResultMessageModel();
+            ResultMessageModel result = userActionRepository.ProcessAction(userActionModel);
 
             var response = Request.CreateResponse<ResultMessageModel>(System.Net.HttpStatusCode.OK, result);
 

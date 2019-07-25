@@ -42,7 +42,8 @@ namespace GamesAPI.Services
         }
         public ResultMessageModel LoginUser(UserActionModel userActionModel)
         {
-            ResultMessageModel result = new ResultMessageModel();
+            UserActionDataAccess userActionDataAccess = new UserActionDataAccess();
+            ResultMessageModel result = userActionDataAccess.LoginUser(userActionModel);
             return result;
         }
     }
