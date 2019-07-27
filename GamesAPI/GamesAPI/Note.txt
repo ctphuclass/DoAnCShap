@@ -1,0 +1,41 @@
+﻿Game Caro Online,
+Y Tuong: User sau khi login se tao room hoac join vao Room de play hoac Join vao room de xem.
+Khi tao room muon bat dau game phai co doi thu san sang. Neu doi thu khong Ready trong vong 10s se bi kick ra.
+Sau khi doi thu san sang thi chu phong moi co quyen start game. Neu Chu ban khong start game thi doi thu co the leave game.
+Chu room co nhung quyen sau: 
+	kick doi thu khi khong Ready.
+	Start game khi doi thu Ready.
+	Leave room
+Nguoi vao choi co quyen sau:
+	Ready de choi game,
+	Leave room khi chua Ready
+Nguoi vao xem.
+	Chi duoc xem game.
+	Leave room.
+	Ngoi vao cho thi dau khi co nguoi leave room.
+	Khi co nguoi vao xem game tang so luot view cua nguoi choi
+
+Room co nhung thuoc tinh sau:
+	Nguoi nao la chu phong.
+	Nguoi nao la nguoi vao choi.
+	Danh sach cac user dang xem.
+	Game dang thi dau la game nao. Neu chua thi dau thi game null
+	Set up trang thai cua game(thoi gian toi da moi buoc di la bao nhieu...)
+	Trang thai hien tai cua room. khi ca 2 nguoi cho thoat ra khoi room thi xem nhu room nay ket thuc
+
+Kich ban sau khi start game Caro.
+	He thong se random chon nguoi dau tien duoc di va thong bao len man hinh cua nguoi choi di truoc.
+	Se co timer de check xem doi thu da di chua va co toi phien minh duoc di khong.
+
+	Bat dau tinh gio den khi nguoi cho di. Chi khi nao toi luoc minh di thi moi duoc click de di con chua den luoc 
+	thi click khong duoc
+	Sau moi luot choi se kiem tra la nguoi vua di da chien thang hay chua
+		Neu da chien thang thi ket thuc game save lai trang thai cua Games update lai trang thai cua room.
+		Neu het cho de di thi coi nhu game ket thuc. Khi do nguoi chien thang la nguoi cho thoi gian choi it hon
+		Neu chua chien thang thi den nguoi tiep theo.
+Trong Game co nhung thuoc tinh sau
+	Nguoi choi thu nhat, thoi gian choi cua nguoi thu nhat, Nguoi thu nhat di bao nhieu nuoc, diem cua nguoi thu nhat sau khi thi dau
+	Nguoi choi thu hai, thoi gian choi cua nguoi thu hai, nguoi thu hai di bao nhieu nuoc, diem cua nguoi thu hai sau khi thi dau
+	Nhung buoc di cua tung nguoi choi(GamesDetails.)
+	Ai la nguoi chien thang.
+
