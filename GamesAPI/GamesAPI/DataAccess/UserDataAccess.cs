@@ -1,4 +1,5 @@
 ﻿using GamesAPI.Models;
+using GamesAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -55,6 +56,47 @@ namespace GamesAPI.DataAccess
             {
                 result.Result = -1;
                 result.ResultMessage = ex.Message;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+            return result;
+        }
+
+        public UserModel GetUserByUserID(int iUserID)
+        {
+            UserModel result = new UserModel();
+            try
+            {
+                /* Because We will put all out values from our (UserRegistration.aspx)
+				To in Bussiness object and then Pass it to Bussiness logic and then to
+				DataAcess
+				this way the flow carry on*/
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand("usp_USER_GetUserByUserID", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@pUserID", SqlDbType.VarChar, 50);
+                cmd.Parameters["@pUserID"].Value = iUserID;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                cmd.Dispose();
+                if (dt.Rows.Count == 1)
+                {
+                    result = UtilsRepository.CreateItemFromRow<UserModel>(dt.Rows[0]);
+                }
+                else
+                {
+                    result = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                result = null;
             }
             finally
             {

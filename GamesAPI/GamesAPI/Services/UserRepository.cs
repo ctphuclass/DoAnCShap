@@ -91,20 +91,24 @@ namespace GamesAPI.Services
         }
         public UserModel GetUser(int iUserID)
         {
-            //var ctx = HttpContext.Current;
+            
+            UserDataAccess userDataAccess = new UserDataAccess();
+            UserModel user = userDataAccess.GetUserByUserID(iUserID);
+            return user;
+            ////var ctx = HttpContext.Current;
 
-            //if (ctx != null)
-            //{
-            //    return (UserModel[])ctx.Cache[CacheKey];
-            //}
+            ////if (ctx != null)
+            ////{
+            ////    return (UserModel[])ctx.Cache[CacheKey];
+            ////}
 
-            return
-                new UserModel
-                {
-                    UserID = 0,
-                    UserName = "Placeholder"
-                };
-               
+            //return
+            //    new UserModel
+            //    {
+            //        UserID = 0,
+            //        UserName = "Placeholder"
+            //    };
+
         }
         public string GetConnectionString()
         {

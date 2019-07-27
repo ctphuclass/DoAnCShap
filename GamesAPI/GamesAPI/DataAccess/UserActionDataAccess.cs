@@ -100,5 +100,44 @@ namespace GamesAPI.DataAccess
             }
             return result;
         }
+        public ResultMessageModel UserCreateRoom(UserActionModel userActionModel) // passing Bussiness object Here
+        {
+            ResultMessageModel result = new ResultMessageModel();
+            try
+            {
+                /* Because We will put all out values from our (UserRegistration.aspx)
+				To in Bussiness object and then Pass it to Bussiness logic and then to
+				DataAcess
+				this way the flow carry on*/
+                SqlCommand cmd = new SqlCommand("usp_USER_CreateRoom", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@pUserID", SqlDbType.Int);
+                cmd.Parameters["@pUserID"].Value = userActionModel.UserID;
+
+                cmd.Parameters["@pResult"].Direction = ParameterDirection.Output;
+                cmd.Parameters["@pResultID"].Direction = ParameterDirection.Output;
+                cmd.Parameters["@pResultMessage"].Direction = ParameterDirection.Output;
+                con.Open();
+                cmd.ExecuteNonQuery();
+                result.Result = (int)cmd.Parameters["@pResult"].Value;
+                if (result.Result > 0)
+                    result.ResultID = (int)cmd.Parameters["@pResultID"].Value;
+                result.ResultMessage = cmd.Parameters["@pResultMessage"].Value.ToString();
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                result.Result = -1;
+                result.ResultMessage = ex.Message;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+            return result;
+        }
     }
 }

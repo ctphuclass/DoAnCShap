@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -24,18 +25,29 @@ namespace CaroClient
         }
         static async Task<ResultMessageModel> LoginAsync(UserActionModel userActionModel)
         {
-            var client = new RestClient("http://localhost:54263/");
-            var request = new RestRequest("api/UserAction");
-            request.AddObject(userActionModel);
-            request.Method = Method.POST;
-            
-            var response = client.Post(request);
-            var content = response.Content; // raw content as string
-            ResultMessageModel result = JsonConvert.DeserializeObject<ResultMessageModel>(content);
-            // or automatically deserialize result
-            // return content type is sniffed but can be explicitly set via RestClient.AddHandler();
-            //RestResponse<ResultMessageModel> response2 = client.Execute<ResultMessageModel>(request);
+            ResultMessageModel result = new ResultMessageModel();
+            try
+            {
+                var client = new RestClient(ConfigurationManager.AppSettings["API_URL"].ToString());
+                var request = new RestRequest("api/UserAction");
+                request.AddObject(userActionModel);
+                request.Method = Method.POST;
 
+                var response = client.Post(request);
+                var content = response.Content; // raw content as string
+                result = JsonConvert.DeserializeObject<ResultMessageModel>(content);
+                if(result == null)
+                {
+                    result = new ResultMessageModel();
+                    result.Result = -1;
+                    result.ResultMessage = "CALL_API_FAIL";
+                }
+            }
+            catch
+            {
+                result.Result = -1;
+                result.ResultMessage = "LOGIN_FAIL";
+            }
             return result;
         }
         private async void btLogin_Click(object sender, EventArgs e)
@@ -48,12 +60,21 @@ namespace CaroClient
             if (result.Result > 0)//login ok
             {
                 userActionModel.UserID = result.ResultID;
-                MessageBox.Show("Hien thi form choi co caro");
+                this.Hide();
+                frmMain fMain = new frmMain();
+                fMain.currentUser.UserID = userActionModel.UserID;
+                fMain.ShowDialog();
+                this.Close();
             }
             else
             {
                 MessageBox.Show(result.ResultMessage);
             }
+        }
+
+        private void btClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

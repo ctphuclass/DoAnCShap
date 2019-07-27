@@ -173,6 +173,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UserActionRepository.cs" />
     <Compile Include="Services\UserRepository.cs" />
+    <Compile Include="Services\UtilsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -183,8 +184,10 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Note.txt" />
     <Content Include="ScriptSQL\usp_USER_ActiveUser.sql" />
     <Content Include="ScriptSQL\usp_USER_CreateUser.sql" />
+    <Content Include="ScriptSQL\usp_USER_GetUserByUserID.sql" />
     <Content Include="ScriptSQL\usp_USER_GetUserIDByUserName.sql" />
     <Content Include="ScriptSQL\usp_USER_Login.sql" />
     <Content Include="Scripts\bootstrap.js" />

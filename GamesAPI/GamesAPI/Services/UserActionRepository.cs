@@ -46,5 +46,11 @@ namespace GamesAPI.Services
             ResultMessageModel result = userActionDataAccess.LoginUser(userActionModel);
             return result;
         }
+        public ResultMessageModel UserCreateRoom(UserActionModel userActionModel)
+        {
+            UserActionDataAccess userActionDataAccess = new UserActionDataAccess();
+            ResultMessageModel result = userActionDataAccess.ActiveUser(userActionModel);
+            return result;
+        }
     }
 }

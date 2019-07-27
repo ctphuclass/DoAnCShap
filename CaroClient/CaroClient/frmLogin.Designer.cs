@@ -91,17 +91,21 @@
             // 
             // btClose
             // 
+            this.btClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btClose.Location = new System.Drawing.Point(254, 146);
             this.btClose.Name = "btClose";
             this.btClose.Size = new System.Drawing.Size(96, 38);
             this.btClose.TabIndex = 4;
             this.btClose.Text = "Close";
             this.btClose.UseVisualStyleBackColor = true;
+            this.btClose.Click += new System.EventHandler(this.btClose_Click);
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.btLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btClose;
             this.ClientSize = new System.Drawing.Size(425, 239);
             this.Controls.Add(this.btClose);
             this.Controls.Add(this.btRegister);
