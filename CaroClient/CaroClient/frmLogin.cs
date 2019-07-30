@@ -59,7 +59,7 @@ namespace CaroClient
             ResultMessageModel result = await LoginAsync(userActionModel);
             if (result.Result > 0)//login ok
             {
-                userActionModel.UserID = result.ResultID;
+                userActionModel.UserID = (int)result.ResultID;
                 this.Hide();
                 frmMain fMain = new frmMain();
                 fMain.currentUser.UserID = userActionModel.UserID;

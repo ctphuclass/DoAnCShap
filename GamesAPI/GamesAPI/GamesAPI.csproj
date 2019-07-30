@@ -186,9 +186,15 @@
     <Content Include="Global.asax" />
     <Content Include="Note.txt" />
     <Content Include="ScriptSQL\usp_USER_ActiveUser.sql" />
+    <Content Include="ScriptSQL\usp_USER_CreateRoom.sql" />
     <Content Include="ScriptSQL\usp_USER_CreateUser.sql" />
+    <Content Include="ScriptSQL\usp_USER_GetRoomActive.sql" />
+    <Content Include="ScriptSQL\usp_USER_GetRoomByRoomID.sql" />
+    <Content Include="ScriptSQL\usp_USER_GetRoomViewerByRoomID.sql" />
     <Content Include="ScriptSQL\usp_USER_GetUserByUserID.sql" />
     <Content Include="ScriptSQL\usp_USER_GetUserIDByUserName.sql" />
+    <Content Include="ScriptSQL\usp_USER_JoinRoom.sql" />
+    <Content Include="ScriptSQL\usp_USER_LeaveRoom.sql" />
     <Content Include="ScriptSQL\usp_USER_Login.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

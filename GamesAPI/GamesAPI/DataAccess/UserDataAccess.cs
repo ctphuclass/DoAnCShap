@@ -123,11 +123,11 @@ namespace GamesAPI.DataAccess
                 cmd.Parameters["@pUserName"].Value = psUserName;
                 cmd.Parameters.Add("@pUserID", SqlDbType.Int);
                 
-                cmd.Parameters["@pResultID"].Direction = ParameterDirection.Output;
+                cmd.Parameters["@pUserID"].Direction = ParameterDirection.Output;
                 
                 con.Open();
                 cmd.ExecuteNonQuery();
-                iUserID = (int)cmd.Parameters["@pResult"].Value;
+                iUserID = (int)cmd.Parameters["@pUserID"].Value;
                 cmd.Dispose();
             }
             catch (Exception ex)

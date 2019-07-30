@@ -28,22 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Manina.Windows.Forms.ImageListViewItem imageListViewItem3 = new Manina.Windows.Forms.ImageListViewItem();
-            Manina.Windows.Forms.ImageListViewItem imageListViewItem4 = new Manina.Windows.Forms.ImageListViewItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.roomList = new Manina.Windows.Forms.ImageListView();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btJoinRoom = new System.Windows.Forms.Button();
+            this.btCreateRoom = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tbRank = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbPoint = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbUserName = new System.Windows.Forms.TextBox();
-            this.btCreateRoom = new System.Windows.Forms.Button();
-            this.btJoinRoom = new System.Windows.Forms.Button();
-            this.roomList = new Manina.Windows.Forms.ImageListView();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -83,6 +81,19 @@
             this.panel3.Size = new System.Drawing.Size(763, 599);
             this.panel3.TabIndex = 2;
             // 
+            // roomList
+            // 
+            this.roomList.AllowDuplicateFileNames = true;
+            this.roomList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roomList.Location = new System.Drawing.Point(0, 0);
+            this.roomList.Name = "roomList";
+            this.roomList.PersistentCacheDirectory = "";
+            this.roomList.PersistentCacheSize = ((long)(100));
+            this.roomList.Size = new System.Drawing.Size(763, 599);
+            this.roomList.TabIndex = 0;
+            this.roomList.UseWIC = true;
+            this.roomList.ItemClick += new Manina.Windows.Forms.ItemClickEventHandler(this.roomList_ItemClick);
+            // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(282, 0);
@@ -103,6 +114,26 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(282, 599);
             this.panel2.TabIndex = 0;
+            // 
+            // btJoinRoom
+            // 
+            this.btJoinRoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btJoinRoom.Location = new System.Drawing.Point(156, 179);
+            this.btJoinRoom.Name = "btJoinRoom";
+            this.btJoinRoom.Size = new System.Drawing.Size(120, 38);
+            this.btJoinRoom.TabIndex = 2;
+            this.btJoinRoom.Text = "Join Room";
+            this.btJoinRoom.UseVisualStyleBackColor = true;
+            // 
+            // btCreateRoom
+            // 
+            this.btCreateRoom.Location = new System.Drawing.Point(12, 179);
+            this.btCreateRoom.Name = "btCreateRoom";
+            this.btCreateRoom.Size = new System.Drawing.Size(116, 38);
+            this.btCreateRoom.TabIndex = 1;
+            this.btCreateRoom.Text = "Create Room";
+            this.btCreateRoom.UseVisualStyleBackColor = true;
+            this.btCreateRoom.Click += new System.EventHandler(this.btCreateRoom_Click);
             // 
             // groupBox3
             // 
@@ -164,47 +195,6 @@
             this.tbUserName.Name = "tbUserName";
             this.tbUserName.Size = new System.Drawing.Size(252, 22);
             this.tbUserName.TabIndex = 0;
-            // 
-            // btCreateRoom
-            // 
-            this.btCreateRoom.Location = new System.Drawing.Point(12, 179);
-            this.btCreateRoom.Name = "btCreateRoom";
-            this.btCreateRoom.Size = new System.Drawing.Size(116, 38);
-            this.btCreateRoom.TabIndex = 1;
-            this.btCreateRoom.Text = "Create Room";
-            this.btCreateRoom.UseVisualStyleBackColor = true;
-            // 
-            // btJoinRoom
-            // 
-            this.btJoinRoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btJoinRoom.Location = new System.Drawing.Point(156, 179);
-            this.btJoinRoom.Name = "btJoinRoom";
-            this.btJoinRoom.Size = new System.Drawing.Size(120, 38);
-            this.btJoinRoom.TabIndex = 2;
-            this.btJoinRoom.Text = "Join Room";
-            this.btJoinRoom.UseVisualStyleBackColor = true;
-            // 
-            // roomList
-            // 
-            this.roomList.AllowDuplicateFileNames = true;
-            this.roomList.Dock = System.Windows.Forms.DockStyle.Fill;
-            imageListViewItem3.FileName = "D:\\Develop\\VIDO\\DoAnCShap\\CaroClient\\CaroClient\\Image\\Room.png";
-            imageListViewItem3.Tag = null;
-            imageListViewItem3.Text = "Room 1";
-            imageListViewItem4.FileName = "D:\\Develop\\VIDO\\DoAnCShap\\CaroClient\\CaroClient\\Image\\Room.png";
-            imageListViewItem4.Tag = null;
-            imageListViewItem4.Text = "Room 2";
-            this.roomList.Items.AddRange(new Manina.Windows.Forms.ImageListViewItem[] {
-            imageListViewItem3,
-            imageListViewItem4});
-            this.roomList.Location = new System.Drawing.Point(0, 0);
-            this.roomList.Name = "roomList";
-            this.roomList.PersistentCacheDirectory = "";
-            this.roomList.PersistentCacheSize = ((long)(100));
-            this.roomList.Size = new System.Drawing.Size(763, 599);
-            this.roomList.TabIndex = 0;
-            this.roomList.UseWIC = true;
-            this.roomList.ItemClick += new Manina.Windows.Forms.ItemClickEventHandler(this.roomList_ItemClick);
             // 
             // frmMain
             // 

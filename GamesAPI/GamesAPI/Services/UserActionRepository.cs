@@ -15,8 +15,10 @@ namespace GamesAPI.Services
             UserDataAccess userDataAccess = new UserDataAccess();
             try
             {
-                userActionModel.UserID = userDataAccess.GetUserIDByUserName(userActionModel.UserName);
-
+                if (userActionModel.UserID <= 0)
+                {
+                    userActionModel.UserID = userDataAccess.GetUserIDByUserName(userActionModel.UserName);
+                }
                 if (userActionModel.ActionType == USER_ACTION_TYPE.USER_ACTIVE)
                 {
                     result = ActiveUser(userActionModel);
@@ -24,6 +26,14 @@ namespace GamesAPI.Services
                 else if (userActionModel.ActionType == USER_ACTION_TYPE.USER_LOGIN)
                 {
                     result = LoginUser(userActionModel);
+                }
+                else if (userActionModel.ActionType == USER_ACTION_TYPE.USER_GET_ROOM_LIST)
+                {
+                    result = UserGetRoomActive(userActionModel);
+                }
+                else if (userActionModel.ActionType == USER_ACTION_TYPE.USER_CREATE_ROOM)
+                {
+                    result = UserCreateRoom(userActionModel);
                 }
             }
             catch (Exception ex)
@@ -49,7 +59,13 @@ namespace GamesAPI.Services
         public ResultMessageModel UserCreateRoom(UserActionModel userActionModel)
         {
             UserActionDataAccess userActionDataAccess = new UserActionDataAccess();
-            ResultMessageModel result = userActionDataAccess.ActiveUser(userActionModel);
+            ResultMessageModel result = userActionDataAccess.UserCreateRoom(userActionModel);
+            return result;
+        }
+        public ResultMessageModel UserGetRoomActive(UserActionModel userActionModel)
+        {
+            UserActionDataAccess userActionDataAccess = new UserActionDataAccess();
+            ResultMessageModel result = userActionDataAccess.GetRoomActive();
             return result;
         }
     }
